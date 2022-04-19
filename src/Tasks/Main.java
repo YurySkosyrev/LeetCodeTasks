@@ -3,10 +3,10 @@ package Tasks;
 import java.util.HashMap;
 
 public class Main {
-    // Two sums
-    // 1. Brute force
-    class Solution_1_1 {
-        public int[] twoSum(int[] nums, int target) {
+    class Solution {
+        // Two sums
+        // 1. Brute force
+        public int[] twoSum_1(int[] nums, int target) {
             int[] result = new int[2];
             for (int i = 0; i < nums.length - 1; i++){
                 for (int j = i + 1; j < nums.length; j++){
@@ -19,11 +19,10 @@ public class Main {
             }
             return result;
         }
-    }
 
-    // 2. Hashmap
-    public class Solution_1_2 {
-        public int[] twoSum(int[] nums, int target) {
+        /***************************************************************************************************/
+
+        public int[] twoSum_2(int[] nums, int target) {
             HashMap<Integer, Integer> hash = new HashMap<>();
             for (int i = 0; i <= nums.length; i++){
                 int value = target - nums[i];
@@ -34,6 +33,26 @@ public class Main {
                 hash.put(nums[i], i);
             }
             return null;
+        }
+
+        /***************************************************************************************************/
+        public int romanToInt(String s) {
+            HashMap<Character, Integer> hash = new HashMap<>();
+            hash.put('I', 1);
+            hash.put('V', 5);
+            hash.put('X', 10);
+            hash.put('L', 50);
+            hash.put('C', 100);
+            hash.put('D', 500);
+            hash.put('M', 1000);
+            int result = hash.get(s.charAt(s.length()-1));
+            for (int i = s.length()-1; i > 0; i--){
+                if (hash.get(s.charAt(i-1)) < hash.get(s.charAt(i)))
+                    result -= hash.get(s.charAt(i-1));
+                else
+                    result += hash.get(s.charAt(i-1));
+            }
+            return result;
         }
     }
 }
