@@ -5,11 +5,8 @@ import java.util.HashMap;
 class Main {
 
     public static void main(String[] args) {
-        int [] nums = new int[]{3,2,0,2,3};
-
-        MoveZeroes(nums);
-        for (int j = 0; j < nums.length; j ++)
-            System.out.print(nums[j] + " ");
+        int [] nums = new int[]{1,3,5,6};
+        System.out.print(BinaryS(nums, 0));
     }
 
 
@@ -69,6 +66,33 @@ class Main {
             }
         }
         return j;
+    }
+
+    //35. Search Insert Position
+    public static int BinaryS(int[] nums, int val){
+        int l = 0;
+        int r = nums.length-1;
+        int i = 0;
+        if (l == r)
+            if (nums[r] >= val)
+                return 0;
+            else
+                return 1;
+        if (nums[r] < val)
+            return r + 1;
+        if (nums[l] > val)
+            return 0;
+        while (l < r){
+            i = (l + r) / 2;
+            if (nums[i] == val){
+                return i;
+            }
+            if (nums[i] < val)
+                l = i + 1;
+            else
+                r = i - 1;
+        }
+        return l + 1;
     }
 
     // 283. Move Zeroes
