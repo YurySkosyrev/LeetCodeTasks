@@ -5,10 +5,33 @@ import java.util.HashMap;
 class Main {
 
     public static void main(String[] args) {
-        int [] nums = new int[]{1,3,5,6};
-        System.out.print(BinaryS(nums, 0));
-    }
+        System.out.println(getCallerClassAndMethodName());
+        m1();    }
 
+    static void m1() {
+        System.out.println(getCallerClassAndMethodName());
+        m2();    }
+
+    static void m2() {
+        System.out.println(getCallerClassAndMethodName());
+        m3();    }
+
+    static void m3() {
+        System.out.println(getCallerClassAndMethodName());    }
+
+    public static String getCallerClassAndMethodName() {
+        StackTraceElement[] stackTraceElements = Thread.currentThread().getStackTrace();
+        String message = null;
+        if(stackTraceElements.length >= 3) {
+            if (stackTraceElements.length == 3)
+                return null;
+            StackTraceElement element = stackTraceElements[3];
+            String className = element.getClassName();
+            String methodName = element.getMethodName();
+            message = className + "#" + methodName;
+        }
+        return message;
+    }
 
 
     // 1 Two sums
